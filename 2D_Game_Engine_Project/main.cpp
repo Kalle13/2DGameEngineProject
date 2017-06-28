@@ -29,8 +29,8 @@ int main()
 
 	std::cout << "number of messages: " << messageBus.messageCounter << std::endl;
 
-	messageBus.FreeMessageBuffer();
-	std::cout << "number of messages: " << messageBus.messageCounter << std::endl;
+	//messageBus.FreeMessageBuffer();
+	//std::cout << "number of messages: " << messageBus.messageCounter << std::endl;
 
 	/*
 	sf::VideoMode videoMode(800, 600);

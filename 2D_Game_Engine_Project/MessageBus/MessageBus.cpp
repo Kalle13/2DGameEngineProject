@@ -6,17 +6,19 @@ MessageBus::MessageBus()
 {
 	messageBusBasePtr = (GE2D_MESSAGE*)malloc(MESSAGE_BUFFER_SIZE_SMALL);
 	messageBufferSize = MESSAGE_BUFFER_SIZE_SMALL;
+	messageCounter = 0;
 }
 
 MessageBus::MessageBus(unsigned int initMemoryBlockSize)
 {
 	messageBusBasePtr = (GE2D_MESSAGE*)malloc(initMemoryBlockSize);
 	messageBufferSize = initMemoryBlockSize;
+	messageCounter = 0;
 }
 
 MessageBus::~MessageBus()
 {	
-	FreeMessageBuffer();
+	//FreeMessageBuffer();
 }
 
 void MessageBus::FreeMessageBuffer()
