@@ -18,7 +18,7 @@ MessageBus::MessageBus(unsigned int initMemoryBlockSize)
 
 MessageBus::~MessageBus()
 {	
-	//FreeMessageBuffer();
+	// Do not need to call "free(messageBusBasePtr)" in destructor; memory will be freed automatically
 }
 
 void MessageBus::FreeMessageBuffer()
@@ -32,7 +32,7 @@ void MessageBus::ClearMessageBuffer()
 	messageCounter = 0;
 }
 
-// ToDo: Send messages to systems based on message type (where each message type is defined by available systems)
+// TODO: Send messages to systems based on message type (where each message type is defined by available systems)
 bool MessageBus::CheckMessageBufferAndSend()
 {
 	if (messageCounter > 0) {
@@ -53,6 +53,30 @@ bool MessageBus::CheckMessageBufferAndSend()
 	return false;
 }
 
+// Function to print all buffered messages to console in chronological order
+// TODO: Specify System type associated with each message
+bool MessageBus::CheckMessageBufferAndPrintInOrder()
+{
+	if (messageCounter > 0) {
+		for (unsigned i = 0; i < messageCounter; ++i) {
+			std::cout << "0x" << std::hex << *(messageBusBasePtr + i * sizeof(GE2D_MESSAGE)) << std::endl;
+		}
+		std::cout << "(MessageBus::CheckMessageBufferAndSend)\tNote: All messages printed" << std::endl;
+		return true;
+	}
+	std::cout << "(MessageBus::CheckMessageBufferAndSend)\tNote: No messages in buffer" << std::endl;
+	return false;
+}
+
+// Function to print all buffered messages to console in chronological order, but grouped by System type
+// TODO: print messageCounter value with each message (acts as a time stamp)
+bool MessageBus::CheckMessageBufferAndPrintByType()
+{
+	// Create function when messages for specific Systems have been defined
+	return false;
+}
+
+// PostMessage function is used by all Systems to post messages to the message bus
 bool MessageBus::PostMessage(GE2D_MESSAGE message)
 {
 	if (messageCounter < messageBufferSize) {

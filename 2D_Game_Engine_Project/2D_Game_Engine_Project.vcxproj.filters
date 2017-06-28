@@ -35,10 +35,10 @@
     <ClInclude Include="Systems\TestSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\Console.h">
+    <ClInclude Include="Managers\MemoryManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Managers\MemoryManager.h">
+    <ClInclude Include="Systems\GameConsole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

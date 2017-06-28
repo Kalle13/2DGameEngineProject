@@ -26,10 +26,7 @@ bool TestSystem::HandleMessage(GE2D_MESSAGE message)
 	case GE2D_MESSAGE_TEST_SEND:
 		std::cout << "MESSAGE_TEST_SEND received" << std::endl;
 		messageHandled = messageBus->PostMessage(GE2D_MESSAGE_TEST_REPLY);
-		break;
-	case GE2D_MESSAGE_TEST_REPLY:
-		std::cout << "MESSAGE_TEST_REPLY received" << std::endl;
-		messageHandled = true;
+		std::cout << "MESSAGE_TEST_REPLY sent" << std::endl;
 		break;
 	default:
 		break;

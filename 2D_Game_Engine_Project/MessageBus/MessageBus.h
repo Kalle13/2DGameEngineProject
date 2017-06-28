@@ -10,27 +10,29 @@
 
 class TestSystem;
 
-class MessageBus
-{
-public:
+	class MessageBus
+	{
+	public:
 
-	MessageBus();
-	MessageBus(unsigned int initMemoryBlockSize);
-	~MessageBus();
+		MessageBus();
+		MessageBus(unsigned int initMemoryBlockSize);
+		~MessageBus();
 
-	void FreeMessageBuffer();
-	void ClearMessageBuffer();
-	bool CheckMessageBufferAndSend();
-	bool PostMessage(GE2D_MESSAGE message);
+		void FreeMessageBuffer();
+		void ClearMessageBuffer();
+		bool CheckMessageBufferAndSend();
+		bool CheckMessageBufferAndPrintInOrder();
+		bool CheckMessageBufferAndPrintByType();
+		bool PostMessage(GE2D_MESSAGE message);
 
-public:
+	public:
 
-	unsigned messageBufferSize;
-	unsigned messageCounter;
-	unsigned *messageBusBasePtr;
+		unsigned messageBufferSize;
+		unsigned messageCounter;
+		unsigned *messageBusBasePtr;
 
-public:
-	
-	TestSystem *testSystem;
+	public:
 
-};
+		TestSystem *testSystem;
+
+	};

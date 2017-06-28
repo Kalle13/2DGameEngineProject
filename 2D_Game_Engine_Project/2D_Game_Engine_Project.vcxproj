@@ -125,7 +125,7 @@
     <ClInclude Include="Managers\MemoryManager.h" />
     <ClInclude Include="MessageBus\MessageBus.h" />
     <ClInclude Include="MessageBus\Messages.h" />
-    <ClInclude Include="Systems\Console.h" />
+    <ClInclude Include="Systems\GameConsole.h" />
     <ClInclude Include="Systems\TestSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

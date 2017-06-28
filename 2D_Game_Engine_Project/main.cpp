@@ -23,11 +23,9 @@ int main()
 
 	checkMessageBuffer = messageBus.CheckMessageBufferAndSend();
 
-	std::cout << "number of messages: " << messageBus.messageCounter << std::endl;
+	messageBus.CheckMessageBufferAndPrintInOrder();
 
-	messageBus.ClearMessageBuffer();
-
-	std::cout << "number of messages: " << messageBus.messageCounter << std::endl;
+	messageBus.ClearMessageBuffer();	
 
 	//messageBus.FreeMessageBuffer();
 	//std::cout << "number of messages: " << messageBus.messageCounter << std::endl;
