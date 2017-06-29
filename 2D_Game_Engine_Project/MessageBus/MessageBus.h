@@ -7,6 +7,8 @@
 #include "../Systems/TestSystem.h"
 
 #define MESSAGE_BUFFER_SIZE_SMALL 4
+#define ADDRESS_SIZE_64_BIT 8
+#define ADDRESS_SIZE_32_BIT 4
 
 class TestSystem;
 

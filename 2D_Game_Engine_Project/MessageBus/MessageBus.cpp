@@ -36,9 +36,13 @@ void MessageBus::ClearMessageBuffer()
 bool MessageBus::CheckMessageBufferAndSend()
 {
 	if (messageCounter > 0) {
+		
+		unsigned currentNumberOfMessages = messageCounter;
+		
 		if (testSystem != NULL) {
-			for (unsigned i = 0; i < messageCounter; ++i) {
-				if (!testSystem->HandleMessage(*(messageBusBasePtr + i * sizeof(GE2D_MESSAGE)))) {
+			for (unsigned i = 0; i < currentNumberOfMessages; ++i) {
+				
+				if (!testSystem->HandleMessage(messageBusBasePtr + i * ADDRESS_SIZE_64_BIT)) {
 					return false;
 				}
 			}
@@ -58,8 +62,12 @@ bool MessageBus::CheckMessageBufferAndSend()
 bool MessageBus::CheckMessageBufferAndPrintInOrder()
 {
 	if (messageCounter > 0) {
-		for (unsigned i = 0; i < messageCounter; ++i) {
-			std::cout << "0x" << std::hex << *(messageBusBasePtr + i * sizeof(GE2D_MESSAGE)) << std::endl;
+
+		unsigned currentNumberOfMessages = messageCounter;
+
+		for (unsigned i = 0; i < currentNumberOfMessages; ++i) {
+			
+			std::cout << "0x" << std::hex << *(messageBusBasePtr + i * ADDRESS_SIZE_64_BIT) << std::endl;
 		}
 		std::cout << "(MessageBus::CheckMessageBufferAndSend)\tNote: All messages printed" << std::endl;
 		return true;
