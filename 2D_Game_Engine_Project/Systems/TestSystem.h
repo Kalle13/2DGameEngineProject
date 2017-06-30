@@ -17,7 +17,7 @@ public:
 	TestSystem(MessageBus* initMessageBusPtr);
 	~TestSystem();
 
-	bool HandleMessage(GE2D_MESSAGE *message);
+	bool HandleMessage(GE2D_MESSAGE *message);	// Use message pointer instead of creating a copy of message
 
 private:
 
