@@ -10,31 +10,38 @@
 #define ADDRESS_SIZE_64_BIT 8
 #define ADDRESS_SIZE_32_BIT 4
 
+namespace ge2d
+{
 class TestSystem;
 
-	class MessageBus
-	{
-	public:
+class MessageBus
+{
+public:
 
-		MessageBus();
-		MessageBus(unsigned int initMemoryBlockSize);
-		~MessageBus();
+	MessageBus() {}
+	~MessageBus() {}
 
-		void FreeMessageBuffer();
-		void ClearMessageBuffer();
-		bool CheckMessageBufferAndSend();
-		bool CheckMessageBufferAndPrintInOrder();
-		bool CheckMessageBufferAndPrintByType();
-		bool PostMessage(GE2D_MESSAGE message);
+	bool StartUpStandard();
+	bool StartUp(unsigned int initMemoryBlockSize);
+	void FreeMessageBuffer();
+	void ClearMessageBuffer();
+	bool PostMessage(Message message);
 
-	public:
+	// Utility/temporary functions
+	bool CheckMessageBufferAndSend();
+	bool CheckMessageBufferAndPrintInOrder();
+	bool CheckMessageBufferAndPrintByType();
 
-		unsigned messageBufferSize;
-		unsigned messageCounter;
-		unsigned *messageBusBasePtr;
+public:
 
-	public:
+	unsigned messageBufferSize;
+	unsigned messageAddressCounter;
+	unsigned *messageBusBasePtr;
 
-		TestSystem *testSystem;
+public:
 
-	};
+	TestSystem *testSystem;
+
+};
+
+}	// namespace ge2d

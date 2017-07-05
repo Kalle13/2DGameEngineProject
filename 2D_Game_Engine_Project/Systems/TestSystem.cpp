@@ -1,20 +1,16 @@
 // TestSystem.cpp
 
 #include "TestSystem.h"
+using namespace ge2d;
 
-TestSystem::TestSystem()
+bool TestSystem::ShutDown()
 {
-	// Empty, for now...
+	// Do nothing at this time
 }
 
-TestSystem::TestSystem(MessageBus* initMessageBusPtr)
+bool TestSystem::StartUp(MessageBus* initMessageBusPtr)
 {
 	messageBus = initMessageBusPtr;
-}
-
-TestSystem::~TestSystem()
-{
-	// Empty, for now...	
 }
 
 bool TestSystem::HandleMessage(GE2D_MESSAGE *message)
@@ -23,7 +19,7 @@ bool TestSystem::HandleMessage(GE2D_MESSAGE *message)
 
 	switch (*message)
 	{
-	case GE2D_MESSAGE_TEST_SEND:
+	case message->:
 		std::cout << "(TestSystem::HandleMessage) message: " << *message << std::endl;
 		std::cout << "MESSAGE_TEST_SEND received" << std::endl;
 		//messageHandled = messageBus->PostMessage(GE2D_MESSAGE_TEST_REPLY);

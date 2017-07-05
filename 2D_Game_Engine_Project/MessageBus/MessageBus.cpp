@@ -1,19 +1,20 @@
 // MessageBus.cpp
 
 #include "MessageBus.h"
+using namespace ge2d;
 
-MessageBus::MessageBus()
+bool ge2d::MessageBus::StartUpStandard()
 {
 	messageBusBasePtr = (GE2D_MESSAGE*)malloc(MESSAGE_BUFFER_SIZE_SMALL);
 	messageBufferSize = MESSAGE_BUFFER_SIZE_SMALL;
-	messageCounter = 0;
+	messageAddressCounter = 0;
 }
 
-MessageBus::MessageBus(unsigned int initMemoryBlockSize)
+bool MessageBus::StartUp(unsigned int initMemoryBlockSize)
 {
 	messageBusBasePtr = (GE2D_MESSAGE*)malloc(initMemoryBlockSize);
 	messageBufferSize = initMemoryBlockSize;
-	messageCounter = 0;
+	messageAddressCounter = 0;
 }
 
 MessageBus::~MessageBus()
@@ -29,13 +30,13 @@ void MessageBus::FreeMessageBuffer()
 // Function to allow overwrite of message buffer
 void MessageBus::ClearMessageBuffer()
 {
-	messageCounter = 0;
+	messageAddressCounter = 0;
 }
 
 // TODO: Send messages to systems based on message type (where each message type is defined by available systems)
 bool MessageBus::CheckMessageBufferAndSend()
 {
-	if (messageCounter > 0) {
+	if (messageAddressCounter > 0) {
 		
 		unsigned currentNumberOfMessages = messageCounter;
 		
@@ -61,11 +62,11 @@ bool MessageBus::CheckMessageBufferAndSend()
 // TODO: Specify System type associated with each message
 bool MessageBus::CheckMessageBufferAndPrintInOrder()
 {
-	if (messageCounter > 0) {
+	if (messageAddressCounter > 0) {
 
-		unsigned currentNumberOfMessages = messageCounter;
+		unsigned currentMessageAddress = messageAddressCounter;
 
-		for (unsigned i = 0; i < currentNumberOfMessages; ++i) {
+		for (unsigned i = 0; i < currentMessageAddress; ++i) {
 			
 			std::cout << "0x" << std::hex << *(messageBusBasePtr + i * ADDRESS_SIZE_64_BIT) << std::endl;
 		}
@@ -77,7 +78,7 @@ bool MessageBus::CheckMessageBufferAndPrintInOrder()
 }
 
 // Function to print all buffered messages to console in chronological order, but grouped by System type
-// TODO: print messageCounter value with each message (acts as a time stamp)
+// TODO: print messageAddressCounter value with each message (address counter acts as a time stamp)
 bool MessageBus::CheckMessageBufferAndPrintByType()
 {
 	// Create function when messages for specific Systems have been defined
@@ -85,11 +86,11 @@ bool MessageBus::CheckMessageBufferAndPrintByType()
 }
 
 // PostMessage function is used by all Systems to post messages to the message bus
-bool MessageBus::PostMessage(GE2D_MESSAGE message)
+bool MessageBus::PostMessage(Message message)
 {
-	if (messageCounter < messageBufferSize) {
-		*(messageBusBasePtr + messageCounter * sizeof(GE2D_MESSAGE)) = message;
-		messageCounter++;
+	if (messageAddressCounter < messageBufferSize) {
+		*(messageBusBasePtr + messageAddressCounter * sizeof(Message)) = message;
+		messageAddressCounter++;
 		return true;
 	}
 	else {

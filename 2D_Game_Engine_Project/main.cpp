@@ -1,5 +1,4 @@
 // main.cpp
-
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -7,6 +6,7 @@
 #include "MessageBus\MessageBus.h"
 #include "MessageBus\Messages.h"
 #include "Systems\TestSystem.h"
+using namespace ge2d;
 
 int main()
 {
@@ -27,10 +27,7 @@ int main()
 
 	messageBus.ClearMessageBuffer();	
 
-	//messageBus.FreeMessageBuffer();
-	//std::cout << "number of messages: " << messageBus.messageCounter << std::endl;
-
-	/*
+	
 	sf::VideoMode videoMode(800, 600);
 	sf::RenderWindow window(videoMode, "game window");
 
@@ -48,6 +45,6 @@ int main()
 		window.clear(sf::Color(255,255,0));
 		window.display();
 	}
-	*/
+	
 	return 0;
 }
