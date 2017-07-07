@@ -8,6 +8,11 @@ bool ge2d::MessageBus::StartUpStandard()
 	messageBusBasePtr = (EngineMessage*)malloc(MESSAGE_BUFFER_SIZE_SMALL);
 	messageBufferSize = MESSAGE_BUFFER_SIZE_SMALL;
 	messageCounter = 0;
+
+	if (messageBusBasePtr == NULL) return false;
+
+	return true;
+
 }
 
 bool MessageBus::StartUp(unsigned int initMemoryBlockSize)
@@ -15,11 +20,17 @@ bool MessageBus::StartUp(unsigned int initMemoryBlockSize)
 	messageBusBasePtr = (EngineMessage*)malloc(initMemoryBlockSize);
 	messageBufferSize = initMemoryBlockSize;
 	messageCounter = 0;
+
+	if (messageBusBasePtr == NULL) return false;
+
+	return true;
+
 }
 
 bool MessageBus::ShutDown()
 {
 	// Nothing for now (memory will be freed in destructor ~MessageBus())
+	return true;
 }
 
 void MessageBus::FreeMessageBuffer()
@@ -70,7 +81,7 @@ bool MessageBus::CheckMessageBufferAndPrintInOrder()
 
 		for (unsigned i = 0; i < currentMessageAddress; i += engineMessageSize) {
 			
-			std::cout << "0x" << std::hex << (*(messageBusBasePtr + i * ADDRESS_SIZE_64_BIT)) << std::endl;
+			//std::cout << "0x" << std::hex << *(messageBusBasePtr + i * ADDRESS_SIZE_64_BIT) << std::endl;
 		}
 		std::cout << "(MessageBus::CheckMessageBufferAndSend)\tNote: All messages printed" << std::endl;
 		return true;

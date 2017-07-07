@@ -82,10 +82,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Kalle\Documents\Visual Studio 2017\SFML\x64\include;C:\Users\Kalle13\Documents\SFML_2.4.2\SFML-2.4.2_x64_Debug\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kalle13\Documents\SFML_2.4.2\SFML-2.4.2_x64_Debug\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\Kalle\Documents\Visual Studio 2017\SFML\x64\lib;C:\Users\Kalle13\Documents\SFML_2.4.2\SFML-2.4.2_x64_Debug\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kalle13\Documents\SFML_2.4.2\SFML-2.4.2_x64_Debug\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>

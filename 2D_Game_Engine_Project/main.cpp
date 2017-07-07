@@ -10,7 +10,7 @@ using namespace ge2d;
 
 int main()
 {
-	/*
+
 	MessageBus messageBus;
 
 	messageBus.StartUpStandard();
@@ -33,8 +33,8 @@ int main()
 	messageBus.CheckMessageBufferAndPrintInOrder();
 
 	messageBus.ClearMessageBuffer();	
-	*/
-	
+
+	/*
 	sf::VideoMode videoMode(800, 600);
 	sf::RenderWindow window(videoMode, "game window");
 
@@ -52,6 +52,6 @@ int main()
 		window.clear(sf::Color(255,255,0));
 		window.display();
 	}
-	
+	*/
 	return 0;
 }
