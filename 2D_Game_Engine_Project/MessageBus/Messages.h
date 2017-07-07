@@ -1,12 +1,11 @@
 // Messages.h
 #pragma once
 
-typedef unsigned int GE2D_MESSAGE;
-
 namespace ge2d
 {
-// enum to let other Systems know which System sent the message
-// May help with interpreting data sent by a System
+	// Do not send a MessageSource enumeration with a Message; the 
+	// "Messages" enum already specifies the source.
+	// Knowing the message source may help with interpreting data sent by a System.
 enum MessageSource
 {
 	Test = 0,
@@ -16,7 +15,7 @@ enum MessageSource
 };
 
 // messages that are sent by systems
-enum GE2DMessage
+enum SystemMessages
 {
 
 // Test System messages
@@ -43,11 +42,14 @@ enum GE2DMessage
 // The data associated with a message will be stored using the DataBuffer (it may be easier 
 // to just have the data sent with the message, or stored somewhere in the MessageBus,
 // memory block, as decided by the MesageBus).
-struct Message
+struct EngineMessage
 {
-	GE2D_MESSAGE message;
+	SystemMessages message;
 	unsigned* dataPointer;
-	MessageSource messageSource;
+	//MessageSource messageSource;
+
+	EngineMessage() {}
+	EngineMessage(SystemMessages iMessage, unsigned* iDataPointer) : message(iMessage), dataPointer(iDataPointer) {}
 };
 
 }	// namespace ge2d

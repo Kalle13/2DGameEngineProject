@@ -3,19 +3,26 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "MessageBus\MessageBus.h"
-#include "MessageBus\Messages.h"
-#include "Systems\TestSystem.h"
+#include "../2D_Game_Engine_Project/MessageBus/MessageBus.h"
+#include "../2D_Game_Engine_Project/MessageBus/Messages.h"
+#include "../2D_Game_Engine_Project/Systems/TestSystem.h"
 using namespace ge2d;
 
 int main()
 {
+	/*
 	MessageBus messageBus;
-	TestSystem testSystem(&messageBus);
 
+	messageBus.StartUpStandard();
+
+	TestSystem testSystem;
+
+	testSystem.StartUp(&messageBus);
 	messageBus.testSystem = &testSystem;
 		
-	if (!messageBus.PostMessage(GE2D_MESSAGE_TEST_SEND)) {
+	EngineMessage testMessage(SystemMessages::TestSend, NULL);
+
+	if (!messageBus.PostMessage(testMessage)) {
 		std::cout << "Failed initial message posting" << std::endl;
 	}
 
@@ -26,7 +33,7 @@ int main()
 	messageBus.CheckMessageBufferAndPrintInOrder();
 
 	messageBus.ClearMessageBuffer();	
-
+	*/
 	
 	sf::VideoMode videoMode(800, 600);
 	sf::RenderWindow window(videoMode, "game window");

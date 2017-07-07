@@ -6,7 +6,7 @@
 #include "Messages.h"
 #include "../Systems/TestSystem.h"
 
-#define MESSAGE_BUFFER_SIZE_SMALL 4
+#define MESSAGE_BUFFER_SIZE_SMALL 8
 #define ADDRESS_SIZE_64_BIT 8
 #define ADDRESS_SIZE_32_BIT 4
 
@@ -23,9 +23,10 @@ public:
 
 	bool StartUpStandard();
 	bool StartUp(unsigned int initMemoryBlockSize);
+	bool ShutDown();
 	void FreeMessageBuffer();
 	void ClearMessageBuffer();
-	bool PostMessage(Message message);
+	bool PostMessage(EngineMessage message);
 
 	// Utility/temporary functions
 	bool CheckMessageBufferAndSend();
@@ -35,8 +36,8 @@ public:
 public:
 
 	unsigned messageBufferSize;
-	unsigned messageAddressCounter;
-	unsigned *messageBusBasePtr;
+	unsigned messageCounter;
+	EngineMessage *messageBusBasePtr;
 
 public:
 

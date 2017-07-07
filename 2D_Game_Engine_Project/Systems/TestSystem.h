@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../MessageBus/MessageBus.h"
+#include "../MessageBus/Messages.h"
 
 // TestSystem intended to be used to test response to user input of game engine messages
 // User/Developer will enter messages, MessageBus will send messages to TestSystem, TestSystem will respond accordingly (print message to Windows console)
@@ -21,7 +22,7 @@ public:
 	bool StartUp(MessageBus* initMessageBusPtr);
 	bool ShutDown();
 
-	bool HandleMessage(GE2D_MESSAGE *message);	// Use message pointer instead of creating a copy of message
+	bool HandleMessage(EngineMessage *message);	// Use EngineMessage pointer instead of creating a copy of message
 
 private:
 
