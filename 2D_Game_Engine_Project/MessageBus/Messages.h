@@ -50,6 +50,12 @@ struct EngineMessage
 
 	EngineMessage() {}
 	EngineMessage(SystemMessages iMessage, unsigned* iDataPtr) : message(iMessage), dataPtr(iDataPtr) {}
+
+	friend std::ostream& operator<<(std::ostream& os, const EngineMessage& engineMessage)
+	{
+		os << engineMessage.message << "\t" << engineMessage.dataPtr << " ";
+		return os;
+	}
 };
 
 }	// namespace ge2d

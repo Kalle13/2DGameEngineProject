@@ -10,6 +10,8 @@
 namespace ge2d
 {
 
+class MessageBus;
+
 struct MouseInputData
 {
 	unsigned buttonFlags;
@@ -34,11 +36,14 @@ class InputSystem
 {
 public:
 
-	InputSystem();
-	~InputSystem();
+	InputSystem() {}
+	~InputSystem() {}
 
+	bool StartUp();
+	bool ShutDown();
 	
-	bool HandleMessage(GE2D_MESSAGE *message);
+	void ReadInput();
+	bool HandleMessage(EngineMessage *message);
 
 public:
 	
@@ -46,7 +51,7 @@ public:
 	bool keyboardEnabled;
 	bool joystickEnabled;
 
-private:
+public:
 
 	MessageBus *messageBus;
 

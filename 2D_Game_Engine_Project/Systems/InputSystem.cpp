@@ -1,15 +1,24 @@
 // InputSystem.cpp
 
 #include "InputSystem.h"
+using namespace ge2d;
 
-InputSystem::InputSystem()
+bool InputSystem::StartUp()
 {
 
 }
 
-InputSystem::~InputSystem()
+bool InputSystem::ShutDown()
 {
 
 }
 
-bool InputSystem::HandleMessage()
+void InputSystem::ReadInput()
+{
+
+}
+
+bool InputSystem::HandleMessage(EngineMessage *message)
+{
+
+}
