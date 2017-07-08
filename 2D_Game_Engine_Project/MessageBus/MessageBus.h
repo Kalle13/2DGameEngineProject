@@ -5,6 +5,7 @@
 #include <malloc.h>
 #include "Messages.h"
 #include "../Systems/TestSystem.h"
+#include "../Systems/InputSystem.h"
 
 #define MESSAGE_BUFFER_SIZE_SMALL 8
 #define ADDRESS_SIZE_64_BIT 8
@@ -21,8 +22,8 @@ public:
 	MessageBus() {}
 	~MessageBus() {}
 
-	bool StartUpStandard();
-	bool StartUp(unsigned int initMemoryBlockSize);
+	bool StartUpStandard();	// initialize MessageBus with memory for 8 messages
+	bool StartUp(unsigned int maxMessageBufferSizeInMessages);	// initialize MessageBus w/ maximum number of messages that it can contain
 	bool ShutDown();
 	void FreeMessageBuffer();
 	void ClearMessageBuffer();
@@ -35,14 +36,14 @@ public:
 
 public:
 
-	unsigned messageBufferSize;
-	unsigned messageCounter;
+	unsigned messageBufferSize;	// number of messages that can be contained in MessageBus
+	unsigned messageCounter;	// Current number of messages in MessageBus memory
 	EngineMessage *messageBusBasePtr;
 
 public:
 
 	TestSystem *testSystem;
-
+	InputSystem *inputSystem;
 };
 
 }	// namespace ge2d

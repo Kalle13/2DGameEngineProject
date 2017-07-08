@@ -5,7 +5,7 @@ using namespace ge2d;
 
 bool ge2d::MessageBus::StartUpStandard()
 {
-	messageBusBasePtr = (EngineMessage*)malloc(MESSAGE_BUFFER_SIZE_SMALL);
+	messageBusBasePtr = (EngineMessage*)malloc(MESSAGE_BUFFER_SIZE_SMALL * sizeof(EngineMessage));
 	messageBufferSize = MESSAGE_BUFFER_SIZE_SMALL;
 	messageCounter = 0;
 
@@ -15,10 +15,10 @@ bool ge2d::MessageBus::StartUpStandard()
 
 }
 
-bool MessageBus::StartUp(unsigned int initMemoryBlockSize)
+bool MessageBus::StartUp(unsigned int maxMessageBufferSizeInMessages)
 {
-	messageBusBasePtr = (EngineMessage*)malloc(initMemoryBlockSize);
-	messageBufferSize = initMemoryBlockSize;
+	messageBusBasePtr = (EngineMessage*)malloc(maxMessageBufferSizeInMessages * sizeof(EngineMessage));
+	messageBufferSize = maxMessageBufferSizeInMessages;
 	messageCounter = 0;
 
 	if (messageBusBasePtr == NULL) return false;
@@ -49,13 +49,13 @@ bool MessageBus::CheckMessageBufferAndSend()
 {
 	if (messageCounter > 0) {
 		
-		unsigned currentMessageAddress = messageCounter;
-		unsigned engineMessageSize = sizeof(EngineMessage);
+		unsigned currentMessageCount = messageCounter;
+		unsigned engineMessageSizeInBytes = sizeof(EngineMessage);
 
 		if (testSystem != NULL) {
-			for (unsigned i = 0; i < currentMessageAddress; i += engineMessageSize) {
+			for (unsigned i = 0; i < currentMessageCount; i++) {
 				
-				if (!testSystem->HandleMessage(((EngineMessage*)(messageBusBasePtr + i * sizeof(EngineMessage))))) {
+				if (!testSystem->HandleMessage(((EngineMessage*)(messageBusBasePtr + i * engineMessageSizeInBytes)))) {
 					return false;
 				}
 			}
@@ -76,12 +76,12 @@ bool MessageBus::CheckMessageBufferAndPrintInOrder()
 {
 	if (messageCounter > 0) {
 
-		unsigned currentMessageAddress = messageCounter;
-		unsigned engineMessageSize = sizeof(EngineMessage);
+		unsigned currentMessageCount = messageCounter;
+		unsigned engineMessageSizeInBytes = sizeof(EngineMessage);
 
-		for (unsigned i = 0; i < currentMessageAddress; i += engineMessageSize) {
+		for (unsigned i = 0; i < currentMessageCount; i++) {
 			
-			//std::cout << "0x" << std::hex << *(messageBusBasePtr + i * ADDRESS_SIZE_64_BIT) << std::endl;
+			std::cout << "0x" << std::hex << *(messageBusBasePtr + i * engineMessageSizeInBytes) << std::endl;
 		}
 		std::cout << "(MessageBus::CheckMessageBufferAndSend)\tNote: All messages printed" << std::endl;
 		return true;
@@ -101,9 +101,11 @@ bool MessageBus::CheckMessageBufferAndPrintByType()
 // PostMessage function is used by all Systems to post messages to the message bus
 bool MessageBus::PostMessage(EngineMessage message)
 {
-	if (messageCounter < messageBufferSize/sizeof(EngineMessage)) {
-		*((EngineMessage*)(messageBusBasePtr + messageCounter * sizeof(EngineMessage))) = message;
-		messageCounter += sizeof(EngineMessage)/4;
+	unsigned engineMessageSizeInBytes = sizeof(EngineMessage);
+
+	if (messageCounter < messageBufferSize) {
+		*((EngineMessage*)(messageBusBasePtr + messageCounter * engineMessageSizeInBytes)) = message;
+		messageCounter++;
 		return true;
 	}
 	else {

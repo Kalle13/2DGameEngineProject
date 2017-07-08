@@ -1,8 +1,7 @@
 // TestSystem.cpp
 
 #include "TestSystem.h"
-namespace ge2d
-{
+using namespace ge2d;
 
 bool TestSystem::ShutDown()
 {
@@ -27,7 +26,7 @@ bool TestSystem::HandleMessage(EngineMessage *message)
 	switch (receivedMessage)
 	{
 	case ge2d::TestSend:
-		std::cout << "(TestSystem::HandleMessage) message: " << message->message << std::endl;				
+		std::cout << "(TestSystem::HandleMessage) message: " << message->message << "\tdataPtr: "<< message->dataPtr << std::endl;		
 		messageHandled = true;
 		break;
 	default:
@@ -37,5 +36,3 @@ bool TestSystem::HandleMessage(EngineMessage *message)
 
 	return messageHandled;
 }
-
-}	// namespace ge2d

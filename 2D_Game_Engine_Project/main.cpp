@@ -12,19 +12,21 @@ int main()
 {
 
 	MessageBus messageBus;
-
-	messageBus.StartUpStandard();
-
 	TestSystem testSystem;
 
+	messageBus.StartUpStandard();
 	testSystem.StartUp(&messageBus);
+
 	messageBus.testSystem = &testSystem;
 		
-	EngineMessage testMessage(SystemMessages::TestSend, NULL);
+	EngineMessage testMessageSend(SystemMessages::TestSend, NULL);
+	EngineMessage testMessageReply(SystemMessages::TestReply, NULL);
 
-	if (!messageBus.PostMessage(testMessage)) {
+	if (!messageBus.PostMessage(testMessageSend)) {
 		std::cout << "Failed initial message posting" << std::endl;
 	}
+
+	messageBus.PostMessage(testMessageReply);
 
 	bool checkMessageBuffer = true;
 

@@ -7,6 +7,9 @@
 #include "../MessageBus/MessageBus.h"
 #include "../MessageBus/Messages.h"
 
+namespace ge2d
+{
+
 struct MouseInputData
 {
 	unsigned buttonFlags;
@@ -47,5 +50,6 @@ private:
 
 	MessageBus *messageBus;
 
-
 };
+
+}	// namespace ge2d

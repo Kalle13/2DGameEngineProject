@@ -45,11 +45,11 @@ enum SystemMessages
 struct EngineMessage
 {
 	SystemMessages message;
-	unsigned* dataPointer;
+	unsigned* dataPtr;
 	//MessageSource messageSource;
 
 	EngineMessage() {}
-	EngineMessage(SystemMessages iMessage, unsigned* iDataPointer) : message(iMessage), dataPointer(iDataPointer) {}
+	EngineMessage(SystemMessages iMessage, unsigned* iDataPtr) : message(iMessage), dataPtr(iDataPtr) {}
 };
 
 }	// namespace ge2d
