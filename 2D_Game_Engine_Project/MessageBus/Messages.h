@@ -11,7 +11,8 @@ enum MessageSource
 	Test = 0,
 	GameConsole,
 	Input,
-	Render
+	Render,
+	Scene
 };
 
 // messages that are sent by systems
@@ -24,9 +25,9 @@ enum SystemMessages
 
 // Input System messages
 	// Received by Input System
-	InputRead,
-	InputRemap,
-
+	InputRead,			// Used to tell input system to read inputs
+	InputRemap,			// Used to remap an SFML event to an input message
+	InputDisable,		// Used to disable an input type (e.g. disable the mouse)
 	// Sent from Input System
 	InputKeyPressed,
 	InputKeyReleased,
@@ -34,6 +35,13 @@ enum SystemMessages
 	InputKeyEdgeFalling,
 	InputMouseEvent,
 	InputJoystickEvent,
+
+// Render System messages
+	//Received
+	RenderCreateWindow,	
+	RenderUpdateWindow,	// Update the window size, position, etc.
+	RenderDraw,			// Draw everything (game objects) to window
+	//Sent
 
 	Count	// Total number of GE2D messages
 };
@@ -44,9 +52,9 @@ enum SystemMessages
 // memory block, as decided by the MesageBus).
 struct EngineMessage
 {
-	SystemMessages message;
 	unsigned* dataPtr;
-	//MessageSource messageSource;
+	SystemMessages message;
+	char padding[4];
 
 	EngineMessage() {}
 	EngineMessage(SystemMessages iMessage, unsigned* iDataPtr) : message(iMessage), dataPtr(iDataPtr) {}

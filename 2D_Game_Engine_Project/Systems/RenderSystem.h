@@ -5,10 +5,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "../MessageBus/MessageBus.h"
+#include "../MessageBus/DataBuffer.h"
 
 namespace ge2d
 {
 class MessageBus;
+class DataBuffer;
 
 class RenderSystem
 {
@@ -18,14 +20,22 @@ public:
 	~RenderSystem() {}
 
 	bool StartUp();
-	bool ShutDown();
+	bool Shutdown();
 
+	void CreateWindow();
 	void Draw();
 	bool HandleMessage(EngineMessage *message);
 
 public:
 
-	MessageBus *messageBus;
+	int windowWidth;
+	int windowHeight;
+	sf::RenderWindow window;
+
+public:
+
+	MessageBus *messageBusPtr;
+	DataBuffer *dataBufferPtr;
 };
 
 

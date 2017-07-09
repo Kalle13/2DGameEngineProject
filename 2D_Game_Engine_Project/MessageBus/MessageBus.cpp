@@ -27,7 +27,7 @@ bool MessageBus::StartUp(unsigned int maxMessageBufferSizeInMessages)
 
 }
 
-bool MessageBus::ShutDown()
+bool MessageBus::Shutdown()
 {
 	// Nothing for now (memory will be freed in destructor ~MessageBus())
 	return true;

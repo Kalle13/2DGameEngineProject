@@ -13,33 +13,72 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{9956b3cf-a7fa-4a60-8def-e7cb4e2f8306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{0d4d72d6-d4f6-4538-b1ff-08c1f25affb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MessageBusAndDataBuffer">
+      <UniqueIdentifier>{4775c192-45e5-4832-9fae-46ad0a0f67ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MessageBus\MessageBus.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameEngine\GameEngine2D.cpp">
+      <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Systems\TestSystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\RenderSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\InputSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageBus\MessageBus.cpp">
+      <Filter>MessageBusAndDataBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\GameConsoleSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\SceneSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageBus\DataBuffer.cpp">
+      <Filter>MessageBusAndDataBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MessageBus\MessageBus.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Systems\TestSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\SceneSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\RenderSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\InputSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\GameConsoleSystem.h">
+      <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="MessageBus\Messages.h">
-      <Filter>Header Files</Filter>
+      <Filter>MessageBusAndDataBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\TestSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MessageBus\MessageBus.h">
+      <Filter>MessageBusAndDataBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="Managers\MemoryManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameEngine\GameEngine2D.h">
+      <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\GameConsole.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MessageBus\DataBuffer.h">
+      <Filter>MessageBusAndDataBuffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
