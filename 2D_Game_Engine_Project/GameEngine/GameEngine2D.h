@@ -2,7 +2,6 @@
 #pragma once
 
 #include "../MessageBus/MessageBus.h"
-#include "../MessageBus/Messages.h"
 #include "../MessageBus/DataBuffer.h"
 #include "../Systems/InputSystem.h"
 #include "../Systems/GameConsoleSystem.h"

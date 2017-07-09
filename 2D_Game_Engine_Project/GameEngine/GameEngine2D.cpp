@@ -39,6 +39,7 @@ bool GameEngine2D::StartUp()
 	engineInputSystemPtr->renderSystemPtr = engineRenderSystemPtr;
 
 	// Initialize all engine Systems
+	// TODO: Implement error checking for each system as they are initialized
 	unsigned maxMessageBusMessages = 100;
 	engineMessageBusPtr->StartUp(maxMessageBusMessages);
 	engineDataBufferPtr->StartUp();

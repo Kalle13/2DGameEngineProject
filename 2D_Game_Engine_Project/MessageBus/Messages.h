@@ -57,6 +57,7 @@ struct EngineMessage
 	char padding[4];
 
 	EngineMessage() {}
+	EngineMessage(SystemMessages iMessage) : message(iMessage), dataPtr(NULL) {}
 	EngineMessage(SystemMessages iMessage, unsigned* iDataPtr) : message(iMessage), dataPtr(iDataPtr) {}
 
 	friend std::ostream& operator<<(std::ostream& os, const EngineMessage& engineMessage)

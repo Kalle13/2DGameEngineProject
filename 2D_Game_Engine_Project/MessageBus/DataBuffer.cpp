@@ -71,6 +71,8 @@ unsigned* DataBuffer::StoreMessageData(const unsigned *dataStackPtr, const unsig
 			std::cout << "(DataBuffer::StoreMessageData) Error: Failed to store data" << std::endl;
 		}
 
+		// Try to ensure that memory is aligned properly (may be easier if all data is padded for proper memory alignment)
+		dataBufferAddressCounter += dataSizeInBytes;
 		return returnPtr;
 	} 
 	else {
