@@ -19,7 +19,7 @@ public:
 	RenderSystem() {}
 	~RenderSystem() {}
 
-	bool StartUp();
+	bool StartUp(MessageBus *initMessageBusPtr, DataBuffer *initDataBufferPtr);
 	bool Shutdown();
 
 	void CreateWindow();

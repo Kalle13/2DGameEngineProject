@@ -20,7 +20,7 @@ public:
 	TestSystem() {}
 	~TestSystem() {}
 
-	bool StartUp();
+	bool StartUp(MessageBus *initMessageBusPtr, DataBuffer *initDataBufferPtr);
 	bool Shutdown();
 
 	bool HandleMessage(EngineMessage *message);	// Use EngineMessage pointer instead of creating a copy of message

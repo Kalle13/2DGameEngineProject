@@ -16,7 +16,7 @@ public:
 	SceneSystem() {}
 	~SceneSystem() {}
 
-	bool StartUp();
+	bool StartUp(MessageBus *initMessageBusPtr, DataBuffer *initDataBufferPtr);
 	bool Shutdown();
 
 public:

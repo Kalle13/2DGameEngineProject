@@ -25,7 +25,7 @@ public:
 	GameConsoleSystem() {}
 	~GameConsoleSystem() {}
 
-	bool StartUp();
+	bool StartUp(MessageBus *initMessageBusPtr, DataBuffer *initDataBufferPtr);
 	bool Shutdown();
 
 public:

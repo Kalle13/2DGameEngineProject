@@ -12,6 +12,7 @@ TestSystem gTestSystem;
 
 bool GameEngine2D::StartUp()
 {
+	// Assign global Systems to game engine's system pointers
 	engineMessageBusPtr = &gMessageBus;
 	engineDataBufferPtr = &gDataBuffer;
 	engineRenderSystemPtr = &gRenderSystem;
@@ -22,32 +23,17 @@ bool GameEngine2D::StartUp()
 
 	// Assign dataBufferPtr to all game engine Systems
 	engineMessageBusPtr->dataBufferPtr = engineDataBufferPtr;
-	engineRenderSystemPtr->dataBufferPtr = engineDataBufferPtr;
-	engineInputSystemPtr->dataBufferPtr = engineDataBufferPtr;
-	engineSceneSystemPtr->dataBufferPtr = engineDataBufferPtr;
-	engineTestSystemPtr->dataBufferPtr = engineDataBufferPtr;
-	engineGameConsoleSystemPtr->dataBufferPtr = engineDataBufferPtr;
-
-	// Assign messageBusPtr to all game engine Systems
-	engineRenderSystemPtr->messageBusPtr = engineMessageBusPtr;
-	engineInputSystemPtr->messageBusPtr = engineMessageBusPtr;
-	engineSceneSystemPtr->messageBusPtr = engineMessageBusPtr;
-	engineTestSystemPtr->messageBusPtr = engineMessageBusPtr;
-	engineGameConsoleSystemPtr->messageBusPtr = engineMessageBusPtr;
-
-	// Additional InputSystem assignments
-	engineInputSystemPtr->renderSystemPtr = engineRenderSystemPtr;
 
 	// Initialize all engine Systems
 	// TODO: Implement error checking for each system as they are initialized
 	unsigned maxMessageBusMessages = 100;
 	engineMessageBusPtr->StartUp(maxMessageBusMessages);
 	engineDataBufferPtr->StartUp();
-	engineRenderSystemPtr->StartUp();
-	engineInputSystemPtr->StartUp();
-	engineSceneSystemPtr->StartUp();
-	engineTestSystemPtr->StartUp();
-	engineGameConsoleSystemPtr->StartUp();
+	engineRenderSystemPtr->StartUp(engineMessageBusPtr,engineDataBufferPtr);
+	engineInputSystemPtr->StartUp(engineMessageBusPtr, engineDataBufferPtr, engineRenderSystemPtr);
+	engineSceneSystemPtr->StartUp(engineMessageBusPtr, engineDataBufferPtr);
+	engineTestSystemPtr->StartUp(engineMessageBusPtr, engineDataBufferPtr);
+	engineGameConsoleSystemPtr->StartUp(engineMessageBusPtr, engineDataBufferPtr);
 
 	return true;
 }

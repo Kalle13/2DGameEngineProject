@@ -51,7 +51,7 @@ public:
 	InputSystem() {}
 	~InputSystem() {}
 
-	bool StartUp();
+	bool StartUp(MessageBus *initMessageBusPtr, DataBuffer *initDataBufferPtr, RenderSystem *initRenderSystemPtr);
 	bool Shutdown();
 	
 	bool ReadInput();

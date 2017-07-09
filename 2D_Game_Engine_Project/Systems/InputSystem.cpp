@@ -3,10 +3,32 @@
 #include "InputSystem.h"
 using namespace ge2d;
 
-bool InputSystem::StartUp()
+bool InputSystem::StartUp(MessageBus *initMessageBusPtr, DataBuffer *initDataBufferPtr, RenderSystem *initRenderSystemPtr)
 {
+
+	if (initMessageBusPtr == NULL) {
+		std::cout << "(InputSystem::StartUp) Error: function received NULL MessageBusPtr." << std::endl;
+		return false;
+	}
+	if (initDataBufferPtr == NULL) {
+		std::cout << "(InputSystem::StartUp) Error: function received NULL DataBufferPtr." << std::endl;
+		return false;
+	}
+	if (initRenderSystemPtr == NULL) {
+		std::cout << "(InputSystem::StartUp) Error: function received NULL RenderSystemPtr." << std::endl;
+		return false;
+	}
+
+	messageBusPtr = initMessageBusPtr;
+	dataBufferPtr = initDataBufferPtr;
+	renderSystemPtr = initRenderSystemPtr;
+
 	if (messageBusPtr == NULL) {
-		std::cout << "(InputSystem::StartUp) Error: messageBusPtr uninitialized" << std::endl;
+		std::cout << "(InputSystem::StartUp) Error: messageBusPtr is NULL after assignment." << std::endl;
+		return false;
+	}
+	if (dataBufferPtr == NULL) {
+		std::cout << "(InputSystem::StartUp) Error: dataBufferPtr is NULL after assignment." << std::endl;
 		return false;
 	}
 	if (renderSystemPtr == NULL) {

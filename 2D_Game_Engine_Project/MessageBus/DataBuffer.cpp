@@ -63,7 +63,7 @@ unsigned* DataBuffer::StoreMessageData(const unsigned *dataStackPtr, const unsig
 	unsigned* returnPtr;
 
 	//Check that data will not extend beyond size of buffer
-	if (dataBufferAddressCounter + dataSizeInBytes < dataBufferSizeInBytes) {
+	if (dataBufferAddressCounter*4 + dataSizeInBytes < dataBufferSizeInBytes) {
 
 		returnPtr = (unsigned*)memcpy((void*)(dataBufferBasePointer + dataBufferAddressCounter), (void*)dataStackPtr, dataSizeInBytes);
 
@@ -72,7 +72,11 @@ unsigned* DataBuffer::StoreMessageData(const unsigned *dataStackPtr, const unsig
 		}
 
 		// Try to ensure that memory is aligned properly (may be easier if all data is padded for proper memory alignment)
-		dataBufferAddressCounter += dataSizeInBytes;
+		dataBufferAddressCounter += dataSizeInBytes/4;
+		if (dataSizeInBytes % 4 > 0) {
+			dataBufferAddressCounter++;
+		}
+		
 		return returnPtr;
 	} 
 	else {
