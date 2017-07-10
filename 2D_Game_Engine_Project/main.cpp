@@ -61,6 +61,8 @@ int main()
 	testSystem.messageBusPtr = &messageBus;
 	testSystem.dataBufferPtr = &dataBuffer;
 
+	// Test DataBuffer with data of different sizes (1,2,3,5,6,7,9,10,11,12,13,14,15 bytes)
+
 	unsigned data1 = 100;
 	unsigned data2 = 200;
 	unsigned data3 = 300;
